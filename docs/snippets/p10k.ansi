@@ -1,0 +1,70 @@
+[0;90m┌[0m  [0;36;1mThis is Powerlevel10k configuration wizard. It will ask you a few questions and
+                                 configure your prompt.[0m[0m
+[0;90m│[0m[0m
+[0;32m◇[0m  Install Meslo Nerd Font??[0m
+[0;90m│[0m  [0;2mChoice [ynq]: n[0m[0m
+[0;90m│[0m[0m
+[0;32m◇[0m  Does this look like a diamond (rotated square)?[0m
+[0;90m│[0m  [0;2mChoice [ynrq]: y[0m[0m
+[0;90m│[0m[0m
+[0;32m◇[0m  Does this look like a lock?[0m
+[0;90m│[0m  [0;2mChoice [ynrq]: y[0m[0m
+[0;90m│[0m[0m
+[0;32m◇[0m  Does this look like an upwards arrow?[0m
+[0;90m│[0m  [0;2mChoice [ynrq]: y[0m[0m
+[0;90m│[0m[0m
+[0;32m◇[0m  What digit is the downwards arrow pointing at?[0m
+[0;90m│[0m  [0;2mChoice [123rq]: 1[0m[0m
+[0;90m│[0m[0m
+[0;32m◇[0m  Do all these icons fit between the crosses?[0m
+[0;90m│[0m  [0;2mChoice [ynrq]: y[0m[0m
+[0;90m│[0m[0m
+[0;32m◇[0m  Prompt Style[0m
+[0;90m│[0m  [0;2mChoice [1234rq]: 3[0m[0m
+[0;90m│[0m[0m
+[0;32m◇[0m  Character Set[0m
+[0;90m│[0m  [0;2mChoice [12rq]: 1[0m[0m
+[0;90m│[0m[0m
+[0;32m◇[0m  Show current time?[0m
+[0;90m│[0m  [0;2mChoice [n12rq]: 2[0m[0m
+[0;90m│[0m[0m
+[0;32m◇[0m  Prompt Separators[0m
+[0;90m│[0m  [0;2mChoice [1234rq]: 1[0m[0m
+[0;90m│[0m[0m
+[0;32m◇[0m  Prompt Heads[0m
+[0;90m│[0m  [0;2mChoice [1234rq]: 2[0m[0m
+[0;90m│[0m[0m
+[0;32m◇[0m  Prompt Tails[0m
+[0;90m│[0m  [0;2mChoice [12345rq]: 2[0m[0m
+[0;90m│[0m[0m
+[0;32m◇[0m  Prompt Height[0m
+[0;90m│[0m  [0;2mChoice [12rq]: 2[0m[0m
+[0;90m│[0m[0m
+[0;32m◇[0m  Prompt Connection[0m
+[0;90m│[0m  [0;2mChoice [123rq]: 3[0m[0m
+[0;90m│[0m[0m
+[0;32m◇[0m  Prompt Frame[0m
+[0;90m│[0m  [0;2mChoice [1234rq]: 4[0m[0m
+[0;90m│[0m[0m
+[0;32m◇[0m  Connection & Frame Color[0m
+[0;90m│[0m  [0;2mChoice [1234rq]: 4[0m[0m
+[0;90m│[0m[0m
+[0;32m◇[0m  Prompt Spacing[0m
+[0;90m│[0m  [0;2mChoice [12rq]: 2[0m[0m
+[0;90m│[0m[0m
+[0;32m◇[0m  Icons[0m
+[0;90m│[0m  [0;2mChoice [12rq]: 1[0m[0m
+[0;90m│[0m[0m
+[0;32m◇[0m  Prompt Flow[0m
+[0;90m│[0m  [0;2mChoice [12rq]: 1[0m[0m
+[0;90m│[0m[0m
+[0;32m◇[0m  Enable Transient Prompt?[0m
+[0;90m│[0m  [0;2mChoice [ynrq]: n[0m[0m
+[0;90m│[0m[0m
+[0;32m◇[0m  Instant Prompt Mode[0m
+[0;90m│[0m  [0;2mChoice [123rq]: 1[0m[0m
+[0;90m│[0m[0m
+[0;32m◆[0m  Powerlevel10k config file already exists.Overwrite ~/.p10k.zsh?[0m
+[0;90m│[0m  [0;2mChoice [ynrq]: y[0m[0m
+[0;90m│[0m[0m
+[0;36m└[0m

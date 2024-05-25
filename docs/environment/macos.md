@@ -70,14 +70,18 @@ sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/too
 sh -c "$(curl -fsSL https://chenzhenhu.com/script/ohmyzsh-install.sh)"
 ```
 
-安装字体 [Meslo LGM NF](https://github.com/ryanoasis/nerd-fonts/releases/download/v3.0.2/Meslo.zip)
+### 安装字体 
+
+[Meslo LGM NF ](https://github.com/ryanoasis/nerd-fonts/releases/download/v3.0.2/Meslo.zip) (推荐)
 
 ```bash
 brew tap homebrew/cask-fonts
 brew install --cask font-meslo-lg-nerd-font
 ```
 
-安装主题 [powerlevel10k](https://github.com/romkatv/powerlevel10k)
+### 安装主题 
+
+[powerlevel10k](https://github.com/romkatv/powerlevel10k) (推荐)
 
 ```bash
 brew install powerlevel10k
@@ -92,7 +96,9 @@ exec zsh
 >
 > **`p10k configure`**
 
+将需要回答一些问题：
 
+<<< @/snippets/p10k.ansi
 
 ## 安装 Java
 
@@ -134,7 +140,7 @@ brew install nvm
 配置国内镜像源
 
 ```bash
-echo "export NVM_NODEJS_ORG_MIRROR=https://npm.taobao.org/mirrors/node" >>~/.zshrc
+echo "export NVM_NODEJS_ORG_MIRROR=https://npmmirror.com/mirrors/node/" >>~/.zshrc
 source ~/.zshrc
 ```
 
@@ -159,6 +165,12 @@ nvm use 18
 ```bash
 # nvm alias default 版本号
 nvm alias default 18
+```
+
+### 安装 nrm 管理 npm 镜像源
+
+```bash
+npm install -g nrm --registry http://registry.npmmirror.com
 ```
 
 
