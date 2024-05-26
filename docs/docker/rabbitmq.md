@@ -29,7 +29,7 @@ services:
 
 ```
 
-延迟队列插件下载 [delayed_message_exchange](https://chenzhenhu.com/docker/attchs/rabbitmq_delayed_message_exchange-3.11.1.ez)
+延迟队列插件下载 [delayed_message_exchange](https://chenzhenhu.com/rabbitmq_delayed_message_exchange-3.11.1.ez)
 
 文件路径：**`./rabbitmq/plugins`**
 
