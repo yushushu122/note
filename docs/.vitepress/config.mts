@@ -1,6 +1,6 @@
 import { defineConfig } from 'vitepress'
 import { nav } from './nav'
-import { sidebar } from './sidebar'
+import { envSidebar, dockerSidebar } from './sidebar'
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
   lang: 'zh-Hans',
@@ -23,7 +23,10 @@ export default defineConfig({
     // https://vitepress.dev/reference/default-theme-config
     nav: nav(),
 
-    sidebar: sidebar(),
+    sidebar: {
+      '/environment': {base: '/environment', items:  envSidebar()},
+      '/docker': dockerSidebar()
+    },
 
     socialLinks: [
       { icon: 'github', link: 'https://github.com/luckywh0/note' }
@@ -32,7 +35,9 @@ export default defineConfig({
       message: '基于 MIT 许可发布',
       copyright: `版权所有 © 2023-${new Date().getFullYear()} HU`
     },
-
+    outline: {
+      label: '页面导航'
+    },
     docFooter: {
       prev: '上一页',
       next: '下一页'

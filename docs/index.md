@@ -9,7 +9,7 @@ hero:
   actions:
     - theme: brand
       text: 快速开始
-      link: /markdown-examples
+      link: environment/macos/command-line
     # - theme: alt
     #   text: API Examples
     #   link: /api-examples
