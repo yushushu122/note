@@ -28,6 +28,7 @@ export function dockerSidebar(): DefaultTheme.SidebarItem[] {
     {
       text: 'Docker',
       items: [
+        { text: '安装docker', link: '/docker/install' },
         { text: '常用命令', link: '/docker/getting-started' },
         { text: '安装MySQL', link: '/docker/mysql' },
         { text: '安装Redis', link: '/docker/redis' },
