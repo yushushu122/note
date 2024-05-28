@@ -262,3 +262,49 @@ docker export 990ccd8ccb94 > test.tar
 docker import  my_ubuntu_v3.tar my/ubuntu:v4  
 ```
 
+
+
+## 清除缓存
+
+清除Docker容器
+
+```bash
+docker container prune
+```
+
+清除Docker镜像
+
+```bash
+docker image prune
+```
+
+清除Docker卷
+
+```bash
+docker volume prune
+```
+
+清除Docker网络
+
+```bash
+docker network prune
+```
+
+清除Docker所有未使用的资源
+
+```bash
+docker system prune
+```
+
+清除Docker所有未使用的资源（包括镜像）
+
+```bash
+docker system prune -a
+```
+
+清除Docker容器、镜像、卷和网络的缓存
+
+```bash
+docker builder prune
+```
+

@@ -22,7 +22,7 @@ public static <T, R> List<T> buildTree(List<T> list, R parentValue,
         R pid = parentKey.apply(item);
         if (Objects.equals(pid, parentValue)) {
             R id = key.apply(item);
-            List<T> children = build(list, id, key, parentKey, consumer);
+            List<T> children = buildTree(list, id, key, parentKey, consumer);
             if (CollUtils.isNotEmpty(children)) {
                 consumer.accept(item, children);
             }
