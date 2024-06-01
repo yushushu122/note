@@ -166,3 +166,157 @@ nrm ls
 nrm add tocersoft https://mvn.tocersoft.net/repository/npm-public/
 ```
 
+
+
+## NVM 进阶用法
+
+### .nvmrc
+
+.nvmrc 的作用：便于切换 node 版本，保证多人开发环境的一致性
+
+.nvmrc 是一个文件，文件内容非常简单，只有一个 [nvm](https://so.csdn.net/so/search?q=nvm&spm=1001.2101.3001.7020) 可识别的 node 版本文本内容，比如: v12.18.2，这个文件应该放在项目根目录下，并且不应被 git 忽略
+
+```bash
+echo "14.21.3" > .nvmrc
+
+echo "v14.21.3" > .nvmrc # to default to the latest LTS version
+
+echo "lts/*" > .nvmrc # to default to the latest version
+```
+
+然后当你运行 nvm 时:
+
+```bash
+nvm use
+Found '/path/to/project/.nvmrc' with version <14.21.3>
+Now using node v14.21.3 (npm v6.14.18)
+```
+
+`nvm use` 将从当前目录向上遍历目录结构，查找 `.nvmrc` 文件。换句话说，运行 `nvm use`et。在带有 `.nvmrc` 的目录的任意子目录中，都将使用 `.nvmrc`。
+
+`.nvmrc` 文件的内容必须是 `<version>`（如 `nvm --help` 所描述），后面跟着一个换行符。不允许有尾随空格，并且需要尾随换行符。
+
+#### bash
+
+将以下内容放在末尾：`$HOME/.bashrc`
+
+```bash
+cdnvm() {
+    command cd "$@" || return $?
+    nvm_path="$(nvm_find_up .nvmrc | command tr -d '\n')"
+
+    # If there are no .nvmrc file, use the default nvm version
+    if [[ ! $nvm_path = *[^[:space:]]* ]]; then
+
+        declare default_version
+        default_version="$(nvm version default)"
+
+        # If there is no default version, set it to `node`
+        # This will use the latest version on your machine
+        if [ $default_version = 'N/A' ]; then
+            nvm alias default node
+            default_version=$(nvm version default)
+        fi
+
+        # If the current version is not the default version, set it to use the default version
+        if [ "$(nvm current)" != "${default_version}" ]; then
+            nvm use default
+        fi
+    elif [[ -s "${nvm_path}/.nvmrc" && -r "${nvm_path}/.nvmrc" ]]; then
+        declare nvm_version
+        nvm_version=$(<"${nvm_path}"/.nvmrc)
+
+        declare locally_resolved_nvm_version
+        # `nvm ls` will check all locally-available versions
+        # If there are multiple matching versions, take the latest one
+        # Remove the `->` and `*` characters and spaces
+        # `locally_resolved_nvm_version` will be `N/A` if no local versions are found
+        locally_resolved_nvm_version=$(nvm ls --no-colors "${nvm_version}" | command tail -1 | command tr -d '\->*' | command tr -d '[:space:]')
+
+        # If it is not already installed, install it
+        # `nvm install` will implicitly use the newly-installed version
+        if [ "${locally_resolved_nvm_version}" = 'N/A' ]; then
+            nvm install "${nvm_version}";
+        elif [ "$(nvm current)" != "${locally_resolved_nvm_version}" ]; then
+            nvm use "${nvm_version}";
+        fi
+    fi
+}
+
+alias cd='cdnvm'
+cdnvm "$PWD" || exit
+```
+
+
+
+#### zsh
+
+将以下内容放在末尾：`$HOME/.zshhrc`
+
+```bash
+# place this after nvm initialization!
+autoload -U add-zsh-hook
+
+load-nvmrc() {
+  local nvmrc_path
+  nvmrc_path="$(nvm_find_nvmrc)"
+
+  if [ -n "$nvmrc_path" ]; then
+    local nvmrc_node_version
+    nvmrc_node_version=$(nvm version "$(cat "${nvmrc_path}")")
+
+    if [ "$nvmrc_node_version" = "N/A" ]; then
+      nvm install
+    elif [ "$nvmrc_node_version" != "$(nvm version)" ]; then
+      nvm use
+    fi
+  elif [ -n "$(PWD=$OLDPWD nvm_find_nvmrc)" ] && [ "$(nvm version)" != "$(nvm version default)" ]; then
+    echo "Reverting to nvm default version"
+    nvm use default
+  fi
+}
+
+add-zsh-hook chpwd load-nvmrc
+load-nvmrc
+```
+
+
+
+#### fish
+
+这需要安装 [低音](https://github.com/edc/bass)。
+
+```bash
+# ~/.config/fish/functions/nvm.fish
+function nvm
+  bass source ~/.nvm/nvm.sh --no-use ';' nvm $argv
+end
+
+# ~/.config/fish/functions/nvm_find_nvmrc.fish
+function nvm_find_nvmrc
+  bass source ~/.nvm/nvm.sh --no-use ';' nvm_find_nvmrc
+end
+
+# ~/.config/fish/functions/load_nvm.fish
+function load_nvm --on-variable="PWD"
+  set -l default_node_version (nvm version default)
+  set -l node_version (nvm version)
+  set -l nvmrc_path (nvm_find_nvmrc)
+  if test -n "$nvmrc_path"
+    set -l nvmrc_node_version (nvm version (cat $nvmrc_path))
+    if test "$nvmrc_node_version" = "N/A"
+      nvm install (cat $nvmrc_path)
+    else if test "$nvmrc_node_version" != "$node_version"
+      nvm use $nvmrc_node_version
+    end
+  else if test "$node_version" != "$default_node_version"
+    echo "Reverting to default Node version"
+    nvm use default
+  end
+end
+
+# ~/.config/fish/config.fish
+# You must call it on initialization or listening to directory switching won't work
+load_nvm > /dev/stderr
+```
+
