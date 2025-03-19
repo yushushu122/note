@@ -32,7 +32,7 @@ export default defineConfig({
       { icon: 'github', link: 'https://github.com/luckywh0/note' }
     ],
     footer: {
-      message: '基于 MIT 许可发布',
+      message: '基于 MIT 许可发布 <a href="http://beian.miit.gov.cn/">苏ICP备15031546号-1</a>',
       copyright: `版权所有 © 2023-${new Date().getFullYear()} HU`
     },
     outline: {
